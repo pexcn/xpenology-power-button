@@ -1,0 +1,20 @@
+Version 6.2-0002
+Adding support for DS918xs
+
+Version 6.2-0001
+Adding support for DSM 6.2
+
+Version 6.1-0005
+Added braswell architecture in INFO for DS916+
+
+Version 6.1-0004
+Minor change for recognizing DSM 6.1.1
+
+Version 6.1-0003
+Adding support for DSM 5.2
+
+Version 6.1-0002
+Combining DSM 6.0 and DSM 6.1 in one package
+
+Version 6.0/6.1-0001
+Versions for DSM 6.0 and DSM 6.1

@@ -1,0 +1,23 @@
+#!/bin/sh
+
+RUNAS="root"
+
+case $1 in
+    start)
+	/usr/bin/acpid.sh start
+        exit 0
+        ;;
+    stop)
+	/usr/bin/acpid.sh stop
+        exit 0
+        ;;
+    status)
+        exit 0
+        ;;
+    log)
+        exit 1
+        ;;
+    *)
+        exit 1
+        ;;
+esac
