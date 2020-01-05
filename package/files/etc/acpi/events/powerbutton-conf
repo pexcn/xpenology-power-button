@@ -1,6 +1,6 @@
-# /etc/acpi/events/powerbtn
+# /etc/acpi/events/powerbutton
 # This is called when the user presses the power button and calls
-# /etc/acpi/powerbtn.sh for further processing.
+# /etc/acpi/powerbutton.sh for further processing.
 
 # Optionally you can specify the placeholder %e. It will pass
 # through the whole kernel event message to the program you've
@@ -9,7 +9,5 @@
 # We need to react on "button power.*" and "button/power.*" because
 # of kernel changes.
 
-
 event=button[ /]power
-action=/etc/acpi/powerbtn.sh
-
+action=/etc/acpi/powerbutton.sh

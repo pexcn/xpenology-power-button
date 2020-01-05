@@ -4,28 +4,28 @@ DSM_VERSION=${SYNOPKG_DSM_VERSION_MAJOR}"."${SYNOPKG_DSM_VERSION_MINOR}
 DSM_PACKAGE=${SYNOPKG_DSM_ARCH}
 
 if [ $DSM_PACKAGE = "bromolow" ] || [ $DSM_PACKAGE = "broadwell" ]; then
-		DSM_PACKAGE="bromolow"
+    DSM_PACKAGE="bromolow"
 fi
 
 preinst ()
 {
     # check version
-	if [ $DSM_PACKAGE = "bromolow" ]; then
-		if [ $DSM_VERSION = "5.2" ] || [ $DSM_VERSION = "6.0" ] || [ $DSM_VERSION = "6.1" ] || [ $DSM_VERSION = "6.2" ]; then
-			exit 0
-		else
-			echo "For Bromolow/Broadwell (DS3615xs and DS3617xs) only 5.2, 6.0, 6.1 and 6.2 are supported" > $SYNOPKG_TEMP_LOGFILE
-			exit 1
-		fi
-	fi
-	if [ $DSM_PACKAGE = "apollolake" ]; then
-		if [ $DSM_VERSION = "6.2" ]; then
-			exit 0
-		else
-			echo "For Apollolake (DS918xs) only 6.2 is supported" > $SYNOPKG_TEMP_LOGFILE
-			exit 1
-		fi
-	fi
+    if [ $DSM_PACKAGE = "bromolow" ]; then
+        if [ $DSM_VERSION = "6.2" ]; then
+            exit 0
+        else
+            echo "For Bromolow/Broadwell (DS3615xs and DS3617xs) only 6.2 is supported" > $SYNOPKG_TEMP_LOGFILE
+            exit 1
+        fi
+    fi
+    if [ $DSM_PACKAGE = "apollolake" ]; then
+        if [ $DSM_VERSION = "6.2" ]; then
+            exit 0
+        else
+            echo "For Apollolake (DS918xs) only 6.2 is supported" > $SYNOPKG_TEMP_LOGFILE
+            exit 1
+        fi
+    fi
 }
 
 postinst ()
@@ -33,8 +33,8 @@ postinst ()
     chown -R root:root ${SYNOPKG_PKGDEST}
     cp -R ${SYNOPKG_PKGDEST}/files/* /
     cp -R ${SYNOPKG_PKGDEST}/modules/$DSM_VERSION/$DSM_PACKAGE/* /usr/lib/modules/
-    
-	exit 0
+
+    exit 0
 }
 
 preuninst ()
@@ -46,14 +46,14 @@ preuninst ()
 
 postuninst ()
 {
-    rm -f /etc/acpi/events/powerbtn-conf
-    rm -f /etc/acpi/powerbtn.sh
+    rm -f /etc/acpi/events/powerbutton-conf
+    rm -f /etc/acpi/powerbutton.sh
     rmdir /etc/acpi/events
     rmdir /etc/acpi
     rm -f /usr/bin/acpid
     rm -f /usr/bin/acpid.sh
     rm -f /usr/lib/modules/evdev.ko
-    if [ $DSM_VERSION = "6.0" ] || [ $DSM_VERSION = "6.1" ] || [ $DSM_VERSION = "6.2" ]; then
+    if [ $DSM_VERSION = "6.2" ]; then
         rm -f /usr/lib/modules/button.ko
     fi
 
