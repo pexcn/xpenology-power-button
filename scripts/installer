@@ -53,9 +53,6 @@ postuninst ()
     rm -f /usr/bin/acpid
     rm -f /usr/bin/acpid.sh
     rm -f /usr/lib/modules/evdev.ko
-    if [ $DSM_VERSION = "6.2" ]; then
-        rm -f /usr/lib/modules/button.ko
-    fi
 
     exit 0
 }
