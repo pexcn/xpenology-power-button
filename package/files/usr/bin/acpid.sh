@@ -1,22 +1,16 @@
 #!/bin/sh
 
-PATH_ACPID=/usr/bin/acpid
-
 case "$1" in
     start)
-        if [ -x "$PATH_ACPID" ]; then
-            insmod /usr/lib/modules/evdev.ko
-            insmod /usr/lib/modules/button.ko
-            echo "start acpid"
-            $PATH_ACPID
-            logger -p daemon.info "$0 started acpid"
-        fi
+        insmod /usr/lib/modules/evdev.ko
+        insmod /usr/lib/modules/button.ko
+        acpid -p /var/run/acpid.pid
+        logger -p daemon.info "$0 started acpid"
         ;;
     stop)
-        echo "stop acpid"
         rmmod button
         rmmod evdev
-        killall acpid > /dev/null 2>&1
+        pkill -F /var/run/acpid.pid
         logger -p daemon.info "$0 stopped acpid"
         ;;
     *)
